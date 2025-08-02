@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뒤로일보 - 결과</title>
+    <link rel="stylesheet" href="styles_result.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-75M5ZCMR2J"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", "G-75M5ZCMR2J");
+    </script>
+  </head>
+  <body>
+    <div class="mobile-wrapper">
+      <div class="page-info">
+        <span>A2</span>
+        <span>정답 공개</span>
+      </div>
+      <div class="divider"></div>
+      <section id="first">
+        <h1 id="result-text">동적변환</h1>
+        <div class="result-container">
+          <div class="result">
+            <div id="result-text-plus">동적변환</div>
+            <p id="result-article">동적변환</p>
+          </div>
+          <div class="result-img"><img src="동적변환" /></div>
+        </div>
+      </section>
+      <div class="divider"></div>
+      <section id="second">
+        <button class="choice" onclick="readArticle()">
+          <div>관련 기사 읽어 보기</div>
+          <img src="gatsby.png" />
+        </button>
+        <button class="choice" onclick="share()">
+          <div>문제 공유하기</div>
+          <img src="gatsby.png" />
+        </button>
+      </section>
+      <div class="divider"></div>
+      <section id="third">
+        <div class="easter">
+          <img src="동적변환" onclick="easter()" />
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="easter">
+          <img src="동적변환" onclick="easter()" />
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
