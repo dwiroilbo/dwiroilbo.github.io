@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>뒤로일보 - 메인</title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles_main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-75M5ZCMR2J"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-75M5ZCMR2J");
+    </script>
+  </head>
+  <body>
+    <div class="mobile-wrapper">
+      <header><h1>뒤로일보</h1></header>
+      <div class="divider"></div>
+      <section class="weather" id="weather">동적변환</section>
+      <div class="divider"></div>
+      <section class="article">
+        <div class="article-title"><div id="article-title">동적변환</div></div>
+        <div class="article-img"><img src="동적변환" id="article-img" /></div>
+        <div class="article-container" id="article-container">
+          <p id="article-content">동적변환</p>
+          <span id="article-author">동적변환</span>
+        </div>
+      </section>
+      <div class="divider"></div>
+      <section class="choices-container">
+        <div class="left">
+          <button class="choice" onclick="checkAnswer(event)">
+            <div class="left-choice" id="correct-choice">
+              <div>동적변환1</div>
+            </div>
+            <img src="guy.png" id="correct-img" />
+          </button>
+        </div>
+        <div class="vertical-divider"></div>
+        <div class="right">
+          <button class="choice" onclick="checkAnswer(event)">
+            <img src="guy.png" id="wrong-img" />
+            <div class="right-choice" id="wrong-choice">
+              <div>동적변환2</div>
+            </div>
+          </button>
+        </div>
+      </section>
+      <section class="ad"><img src="동적변환" id="ad-img" /></section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
