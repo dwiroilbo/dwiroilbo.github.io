@@ -4,9 +4,9 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>뒤로일보 - 메인</title>
+    <title>뒤로일보 - 시작</title>
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="stylesheet" href="styles_main.css" />
+    <link rel="stylesheet" href="styles_start.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <script
       async
@@ -17,62 +17,41 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-
       gtag("js", new Date());
       gtag("config", "G-75M5ZCMR2J");
-
-      const params = new URLSearchParams(window.location.search);
-      const fromStart = params.get("from") === "start";
-
-      // index.html에 직접 접근한 경우만 리디렉션
-      if (
-        (location.pathname.endsWith("index.html") ||
-          location.pathname === "/") &&
-        !fromStart
-      ) {
-        gtag("event", "quiz_main_page");
-        setTimeout(() => {
-          location.href = "start.html";
-        }, 400);
-      }
     </script>
   </head>
   <body>
-    <div class="mobile-wrapper">
-      <header><h1>뒤로일보</h1></header>
-      <div class="divider"></div>
-      <section class="weather" id="weather">동적변환</section>
-      <div class="divider"></div>
-      <section class="article">
-        <div class="article-title"><div id="article-title">동적변환</div></div>
-        <div class="article-img"><img src="동적변환" id="article-img" /></div>
-        <div class="article-container" id="article-container">
-          <p id="article-content">동적변환</p>
-          <span id="article-author">동적변환</span>
-        </div>
-      </section>
-      <div class="divider"></div>
-      <section class="choices-container">
-        <div class="left">
-          <button class="choice" onclick="checkAnswer(event)">
-            <div class="left-choice" id="correct-choice">
-              <div>동적변환1</div>
-            </div>
-            <img src="guy.png" id="correct-img" />
-          </button>
-        </div>
-        <div class="vertical-divider"></div>
-        <div class="right">
-          <button class="choice" onclick="checkAnswer(event)">
-            <img src="guy.png" id="wrong-img" />
-            <div class="right-choice" id="wrong-choice">
-              <div>동적변환2</div>
-            </div>
-          </button>
-        </div>
-      </section>
-      <section class="ad"><img src="동적변환" id="ad-img" /></section>
-    </div>
+    <h1>뒤로일보 beta</h1>
+    <button id="start-btn" onclick="goSolveQuiz(event)">퀴즈 풀러 가기</button>
+
+    <p
+      style="
+        font-size: 11px;
+        color: #666;
+        text-align: center;
+        max-width: 320px;
+        margin-top: 30px;
+        line-height: 1.5;
+      "
+    >
+      이 사이트는 한국어 기반으로 개발 중인 연습용 프로젝트이며, 사용자의 이름,
+      이메일 등 개인정보는 수집하지 않습니다.<br />
+      서비스 개선 및 데이터 분석 연습을 목적으로 Google Analytics를 활용하여
+      비식별 정보(페이지 방문, 클릭 등)만 수집합니다.<br />
+      이 과정에서 Google Analytics는 쿠키를 사용하며, IP 기반으로 대략적인 위치
+      정보(국가, 도시 등)를 수집할 수 있습니다.<br /><br />
+      This site is a Korean-language project currently under development for
+      practice purposes.<br />
+      It does not collect any personal information such as names or email
+      addresses.<br />
+      Only non-identifiable data (e.g., page visits, clicks) is collected via
+      Google Analytics for service improvement and data analysis practice
+      purposes.<br />
+      This may involve the use of cookies and the collection of approximate
+      location data (such as country or city) based on IP address.
+    </p>
+
     <script src="script.js"></script>
   </body>
 </html>
