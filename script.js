@@ -1,12 +1,3 @@
-// // GA 설정
-// window.dataLayer = window.dataLayer || [];
-// function gtag() {
-//   dataLayer.push(arguments);
-// }
-
-// gtag("js", new Date());
-// gtag("config", "G-75M5ZCMR2J", { debug_mode: true });
-
 document.addEventListener("DOMContentLoaded", function () {
   loadCSV();
 
@@ -37,7 +28,11 @@ async function loadCSV() {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     let csvText = await response.text();
     csvText = csvText.replace(/^\uFEFF/, "");
-    const parsedData = Papa.parse(csvText, { header: true }).data;
+    const parsedData = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: "greedy", // 완전 빈 줄 + 공백줄 무시
+      transform: (v) => (typeof v === "string" ? v.trim() : v), // 양끝 공백 제거
+    }).data;
     const today = new Date(Date.now() + 9 * 60 * 60 * 1000)
       .toISOString()
       .split("T")[0];
@@ -56,19 +51,40 @@ function getKSTTimestamp() {
 
 document.addEventListener("DOMContentLoaded", function () {
   //start.html 진입 이벤트
-  if (location.pathname.includes("start.html")) {
-    gtag("event", "quiz_start_page", {});
+  if (location.pathname.includes("main.html")) {
+    gtag("event", "quiz_main_page", {});
   }
 
   // index.html 진입 이벤트
   if (location.pathname.includes("index.html")) {
-    gtag("event", "quiz_main_page", {});
+    gtag("event", "quiz_start_page", {});
   }
 
   // result.html 진입 이벤트
   if (location.pathname.includes("result.html")) {
     gtag("event", "quiz_result_page", {});
+
+    const r1 = localStorage.getItem("resultImage1") || "";
+    const r2 = localStorage.getItem("resultImage2") || "";
+    const r3 = localStorage.getItem("resultImage3") || "";
+
+    const img1 = document.querySelector("#result-img1 img");
+    const img2 = document.querySelector("#result-img2 img");
+    const img3 = document.querySelector("#result-img3 img");
+
+    if (img1 && r1) img1.src = r1;
+    if (img2 && r2) img2.src = r2;
+    if (img3 && r3) img3.src = r3;
   }
+
+  // 메인 결과 이미지
+  const mainImg = document.querySelector(".result-img img");
+  if (mainImg && r1) mainImg.src = r1;
+
+  // 이스터에그 2장
+  const easters = document.querySelectorAll("#third .easter img");
+  if (easters[0] && r2) easters[0].src = r2;
+  if (easters[1] && r3) easters[1].src = r3;
 });
 
 function highlightQuotedText(text) {
@@ -101,6 +117,9 @@ function updateArticle(article) {
 
   localStorage.setItem("correctKeyword", extractKeyword(article.correctChoice));
 
+  localStorage.setItem("resultImage1", article.resultImage1 || "");
+  localStorage.setItem("resultImage2", article.resultImage2 || "");
+  localStorage.setItem("resultImage3", article.resultImage3 || "");
   // 표시용 HTML 저장
   localStorage.setItem(
     "correctChoice",
@@ -117,7 +136,7 @@ function updateArticle(article) {
 // start.html 퀴즈 풀러 가기 누르기
 function goSolveQuiz() {
   gtag("event", "quiz_go_solve", {});
-  window.location.href = "index.html?from=start";
+  window.location.href = "main.html";
 }
 
 function randomizeChoices() {
