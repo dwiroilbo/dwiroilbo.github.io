@@ -120,6 +120,9 @@ function updateArticle(article) {
   localStorage.setItem("resultImage1", article.resultImage1 || "");
   localStorage.setItem("resultImage2", article.resultImage2 || "");
   localStorage.setItem("resultImage3", article.resultImage3 || "");
+
+  localStorage.setItem("readArticle", article.readArticle);
+
   // 표시용 HTML 저장
   localStorage.setItem(
     "correctChoice",
@@ -157,8 +160,7 @@ function randomizeChoices() {
 function checkAnswer(event) {
   const correctKeyword = localStorage.getItem("correctKeyword") || "";
 
-  const selectedRaw =
-    event.currentTarget.querySelector("div").textContent || "";
+  const selectedRaw = event.currentTarget.textContent || "";
   const selectedKeyword = extractKeyword(selectedRaw);
 
   alert(`정답 키워드: [${correctKeyword}]\n선택 키워드: [${selectedKeyword}]`);
@@ -179,12 +181,26 @@ function checkAnswer(event) {
 
 function readArticle() {
   gtag("event", "quiz_read_article", {});
-  alert("관련기사 준비중...");
+
+  //임시로 새탭에 구글이 열림
+  window.open(`${localStorage.getItem("readArticle")}`);
 }
 
 function share() {
   gtag("event", "quiz_share", {});
-  alert("공유 준비중...");
+
+  const mainUrl = `${window.location.origin}/main.html`;
+  // const mainUrl = "https://dwiroilbo.github.io"
+
+  navigator.clipboard
+    .writeText(mainUrl)
+    .then(() => {
+      alert("링크가 복사되었습니다!\n" + mainUrl);
+    })
+    .catch((err) => {
+      console.error("클립보드 복사 실패:", err);
+      alert("링크 복사에 실패했습니다. 수동으로 복사해주세요!");
+    });
 }
 
 function easter() {

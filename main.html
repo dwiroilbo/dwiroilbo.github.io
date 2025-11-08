@@ -36,23 +36,28 @@
         </div>
       </section>
       <div class="divider"></div>
+      <div id="question">Q. 빈칸에 들어갈 선택지를 눌러주세요!</div>
       <section class="choices-container">
         <div class="left">
-          <button class="choice" onclick="checkAnswer(event)">
+          <div class="choice">
             <div class="left-choice" id="correct-choice">
-              <div>동적변환1</div>
+              <div id="choice-button" onclick="checkAnswer(event)">
+                동적변환1
+              </div>
             </div>
             <img src="guy.png" id="correct-img" />
-          </button>
+          </div>
         </div>
         <div class="vertical-divider"></div>
         <div class="right">
-          <button class="choice" onclick="checkAnswer(event)">
+          <div class="choice">
             <img src="guy.png" id="wrong-img" />
             <div class="right-choice" id="wrong-choice">
-              <div>동적변환2</div>
+              <div id="choice-button" onclick="checkAnswer(event)">
+                동적변환2
+              </div>
             </div>
-          </button>
+          </div>
         </div>
       </section>
       <section class="ad"><img src="동적변환" id="ad-img" /></section>
