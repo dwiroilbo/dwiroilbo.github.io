@@ -145,8 +145,14 @@ span {
   opacity: 0.2;
 }
 
+#question {
+  padding-top: 10px;
+  font-weight: bolder;
+}
+
 .left {
   display: flex;
+  flex-direction: column;
   justify-content: left;
   align-items: center;
   height: 100%;
@@ -155,6 +161,7 @@ span {
 
 .right {
   display: flex;
+  flex-direction: column;
   justify-content: right;
   align-items: center;
   height: 100%;
@@ -168,19 +175,27 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  /* cursor: pointer; */
   border: 0px solid black;
-  box-shadow: 0px 4px 15px 1px rgba(0, 0, 0, 0.6);
-  font-weight: bold;
+  /* box-shadow: 0px 4px 15px 1px rgba(0, 0, 0, 0.6); */
+  /* font-weight: bold; */
   box-sizing: border-box;
   color: black;
   height: 100%;
   width: 90%;
-  animation: pulse 1.5s infinite ease-in-out;
+  /* animation: pulse 1.5s infinite ease-in-out; */
+
+  background-color: #e3e3e3;
 }
 
 .choice div {
-  margin: 5px;
+  text-align: center;
+  align-items: center;
+  margin: 9px;
+  /* border: 5px solid black; */
+  border-radius: 50%;
+  background-color: #f3f3f3;
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
 .left-choice {
@@ -189,6 +204,7 @@ span {
   left: 0;
   text-align: left;
   width: 70%;
+  font-size: 20px;
 }
 
 .right-choice {
@@ -197,20 +213,21 @@ span {
   right: 0;
   text-align: right;
   width: 70%;
+  font-size: 20px;
 }
 
 .left-choice + img {
   position: absolute;
   bottom: 3px;
   right: 3px;
-  z-index: -1;
+  /* z-index: -1; */
 }
 
 .right > .choice > img {
   position: absolute;
   bottom: 2px;
   left: 3px;
-  z-index: -1;
+  z-index: 1;
   transform: scaleX(-1);
 }
 
@@ -230,14 +247,21 @@ span {
 }
 
 img {
-  width: 55%;
+  width: 45%;
   filter: grayscale(100%);
   user-select: none;
   pointer-events: none;
 }
 
-.choice:hover {
+#choice-button {
+  font-family: none;
+  font-weight: bold;
+}
+
+#choice-button:hover {
   opacity: 0.5;
+  cursor: pointer;
+  color: orange;
 }
 
 .highlight {
@@ -248,13 +272,13 @@ img {
 
 @keyframes pulse {
   0% {
-    transform: scale(1); /* 기본 크기 */
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.02); /* 크기 10% 증가 */
+    transform: scale(1.02);
   }
   100% {
-    transform: scale(1); /* 원래 크기로 돌아오기 */
+    transform: scale(1);
   }
 }
 

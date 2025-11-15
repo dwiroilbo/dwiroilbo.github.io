@@ -50,14 +50,19 @@ function getKSTTimestamp() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  //start.html 진입 이벤트
-  if (location.pathname.includes("main.html")) {
-    gtag("event", "quiz_main_page", {});
+  //shared.html 진입 이벤트
+  if (location.pathname.includes("shared.html")) {
+    gtag("event", "quiz_shared_page", {});
   }
 
-  // index.html 진입 이벤트
+  //index.html 진입 이벤트
   if (location.pathname.includes("index.html")) {
-    gtag("event", "quiz_start_page", {});
+    gtag("event", "quiz_index_page", {});
+  }
+
+  // main.html 진입 이벤트
+  if (location.pathname.includes("main.html")) {
+    gtag("event", "quiz_main_page", {});
   }
 
   // result.html 진입 이벤트
@@ -120,6 +125,9 @@ function updateArticle(article) {
   localStorage.setItem("resultImage1", article.resultImage1 || "");
   localStorage.setItem("resultImage2", article.resultImage2 || "");
   localStorage.setItem("resultImage3", article.resultImage3 || "");
+
+  localStorage.setItem("readArticle", article.readArticle);
+
   // 표시용 HTML 저장
   localStorage.setItem(
     "correctChoice",
@@ -133,7 +141,7 @@ function updateArticle(article) {
   randomizeChoices();
 }
 
-// start.html 퀴즈 풀러 가기 누르기
+// index.html 퀴즈 풀러 가기 누르기
 function goSolveQuiz() {
   gtag("event", "quiz_go_solve", {});
   window.location.href = "main.html";
@@ -157,8 +165,7 @@ function randomizeChoices() {
 function checkAnswer(event) {
   const correctKeyword = localStorage.getItem("correctKeyword") || "";
 
-  const selectedRaw =
-    event.currentTarget.querySelector("div").textContent || "";
+  const selectedRaw = event.currentTarget.textContent || "";
   const selectedKeyword = extractKeyword(selectedRaw);
 
   alert(`정답 키워드: [${correctKeyword}]\n선택 키워드: [${selectedKeyword}]`);
@@ -179,12 +186,26 @@ function checkAnswer(event) {
 
 function readArticle() {
   gtag("event", "quiz_read_article", {});
-  alert("관련기사 준비중...");
+
+  //임시로 새탭에 구글이 열림
+  window.open(`${localStorage.getItem("readArticle")}`);
 }
 
 function share() {
   gtag("event", "quiz_share", {});
-  alert("공유 준비중...");
+
+  const mainUrl = `${window.location.origin}/shared.html`;
+  // const mainUrl = "https://dwiroilbo.github.io"
+
+  navigator.clipboard
+    .writeText(mainUrl)
+    .then(() => {
+      alert("링크가 복사되었습니다!\n" + mainUrl);
+    })
+    .catch((err) => {
+      console.error("클립보드 복사 실패:", err);
+      alert("링크 복사에 실패했습니다. 수동으로 복사해주세요!");
+    });
 }
 
 function easter() {
