@@ -69,6 +69,13 @@ header h1 {
   text-align: center;
 }
 
+#article-content {
+  text-align: justify;
+  /* text-align: left; */
+
+  word-spacing: -0.2em; /* 띄어쓰기(스페이스) 간격 조절 */
+}
+
 .article-img {
   margin: 0;
   display: flex;
@@ -76,6 +83,8 @@ header h1 {
   align-items: center;
   height: 30%;
   width: 100%;
+
+  opacity: 0.7;
 }
 
 .article-img > img {
