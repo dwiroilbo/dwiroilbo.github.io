@@ -50,14 +50,19 @@ function getKSTTimestamp() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  //start.html 진입 이벤트
-  if (location.pathname.includes("main.html")) {
-    gtag("event", "quiz_main_page", {});
+  //shared.html 진입 이벤트
+  if (location.pathname.includes("shared.html")) {
+    gtag("event", "quiz_shared_page", {});
   }
 
-  // index.html 진입 이벤트
+  //index.html 진입 이벤트
   if (location.pathname.includes("index.html")) {
-    gtag("event", "quiz_start_page", {});
+    gtag("event", "quiz_index_page", {});
+  }
+
+  // main.html 진입 이벤트
+  if (location.pathname.includes("main.html")) {
+    gtag("event", "quiz_main_page", {});
   }
 
   // result.html 진입 이벤트
@@ -136,7 +141,7 @@ function updateArticle(article) {
   randomizeChoices();
 }
 
-// start.html 퀴즈 풀러 가기 누르기
+// index.html 퀴즈 풀러 가기 누르기
 function goSolveQuiz() {
   gtag("event", "quiz_go_solve", {});
   window.location.href = "main.html";
@@ -189,7 +194,7 @@ function readArticle() {
 function share() {
   gtag("event", "quiz_share", {});
 
-  const mainUrl = `${window.location.origin}/main.html`;
+  const mainUrl = `${window.location.origin}/shared.html`;
   // const mainUrl = "https://dwiroilbo.github.io"
 
   navigator.clipboard
