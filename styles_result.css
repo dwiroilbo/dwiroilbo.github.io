@@ -112,6 +112,8 @@ h1 {
   padding: 0; /* 패딩 제거 */
   hyphens: auto;
   line-height: 1.14;
+
+  word-spacing: -0.2em; /* 띄어쓰기(스페이스) 간격 조절 */
 }
 
 #second {
@@ -193,11 +195,15 @@ button:hover {
 #result-img1 img {
   height: 100%;
   width: 100%;
+
+  opacity: 0.8;
 }
 
 #result-img2 img {
   height: 100%;
   width: 100%;
+
+  opacity: 0.8;
 }
 
 #result-img3 img {
