@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function loadCSV() {
   try {
-    const response = await fetch("weeklyUpdates/articles.csv");
+    const response = await fetch("/weeklyUpdates/articles.csv");
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     let csvText = await response.text();
     csvText = csvText.replace(/^\uFEFF/, "");
@@ -51,22 +51,22 @@ function getKSTTimestamp() {
 
 document.addEventListener("DOMContentLoaded", function () {
   //shared.html 진입 이벤트
-  if (location.pathname.includes("shared.html")) {
+  if (location.pathname.includes("shared")) {
     gtag("event", "quiz_shared_page", {});
   }
 
   //index.html 진입 이벤트
-  if (location.pathname.includes("index.html")) {
-    gtag("event", "quiz_index_page", {});
+  if (location.pathname === "/" || location.pathname.includes("index")) {
+    gtag("event", "quiz_index_page");
   }
 
   // main.html 진입 이벤트
-  if (location.pathname.includes("main.html")) {
+  if (location.pathname.includes("main")) {
     gtag("event", "quiz_main_page", {});
   }
 
   // result.html 진입 이벤트
-  if (location.pathname.includes("result.html")) {
+  if (location.pathname.includes("result")) {
     gtag("event", "quiz_result_page", {});
 
     const r1 = localStorage.getItem("resultImage1") || "";
@@ -144,7 +144,7 @@ function updateArticle(article) {
 // index.html 퀴즈 풀러 가기 누르기
 function goSolveQuiz() {
   gtag("event", "quiz_go_solve", {});
-  window.location.href = "main.html";
+  window.location.href = "/main";
 }
 
 function randomizeChoices() {
@@ -178,7 +178,7 @@ function checkAnswer(event) {
   gtag("event", "quiz_answer_selected", {
     value: isCorrect ? 1 : 0,
     event_callback: () => {
-      window.location.href = "result.html";
+      window.location.href = "/result";
     },
     event_timeout: 500, // 전송 실패해도 0.5초 후엔 이동
   });
@@ -194,7 +194,7 @@ function readArticle() {
 function share() {
   gtag("event", "quiz_share", {});
 
-  const mainUrl = `${window.location.origin}/shared.html`;
+  const mainUrl = `${window.location.origin}/shared`;
   // const mainUrl = "https://dwiroilbo.github.io"
 
   navigator.clipboard
